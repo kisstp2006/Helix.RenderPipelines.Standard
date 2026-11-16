@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The C# tests of the Standard pipeline: scripts the C++ test program runs in the engine. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Message methods are found by reflection: unused private members are expected. -->
+    <NoWarn>IDE0051;CS0169;CS0649</NoWarn>
+    <AssemblyName>Helix.RenderPipelines.Standard.Tests</AssemblyName>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HelixEngine.CoreModule">
+      <HintPath>$(HelixCoreModule)</HintPath>
+    </Reference>
+    <Reference Include="Helix.Mathematics">
+      <HintPath>$([System.IO.Path]::GetDirectoryName($(HelixCoreModule)))/Helix.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Helix.RenderPipelines.Core.Runtime">
+      <HintPath>$(HelixRenderPipelinesCore)</HintPath>
+    </Reference>
+    <Reference Include="Helix.RenderPipelines.Standard.Runtime">
+      <HintPath>$(HelixRenderPipelinesStandard)</HintPath>
+    </Reference>
+    <Reference Include="Helix.Scripting.Runtime">
+      <HintPath>$(HelixScriptingRuntime)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(HelixModuleBindings)' != ''">
+    <Compile Include="$(HelixModuleBindings)" />
+  </ItemGroup>
+</Project>

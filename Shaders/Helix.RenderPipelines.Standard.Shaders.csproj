@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Standard pipeline's shaders: an assembly the engine loads as shader assets, beside the core's shader library they call. -->
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS8981;CS0649;CS0414</NoWarn>
+    <RootNamespace>HelixEngine.Rendering.Universal.Shaders</RootNamespace>
+    <AssemblyName>Helix.RenderPipelines.Standard.Shaders</AssemblyName>
+    <Deterministic>true</Deterministic>
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- Given by the build (where the dependencies were found), else this repo's own. -->
+    <HelixShadersDir Condition="'$(HelixShadersDir)' == ''">$(MSBuildThisFileDirectory)../External/Helix.Shaders</HelixShadersDir>
+    <HelixEngineDir Condition="'$(HelixEngineDir)' == ''">$(MSBuildThisFileDirectory)../External/Helix.Engine</HelixEngineDir>
+    <HelixRenderPipelinesCoreDir Condition="'$(HelixRenderPipelinesCoreDir)' == ''">$(MSBuildThisFileDirectory)../External/Helix.RenderPipelines.Core</HelixRenderPipelinesCoreDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(HelixShadersDir)/Source/HelixEngine.Shaders/HelixEngine.Shaders.csproj" />
+    <ProjectReference Include="$(HelixEngineDir)/Shaders/HelixEngine.BuiltinShaders.csproj" />
+    <ProjectReference Include="$(HelixRenderPipelinesCoreDir)/ShaderLibrary/Helix.RenderPipelines.Core.ShaderLibrary.csproj" />
+  </ItemGroup>
+</Project>

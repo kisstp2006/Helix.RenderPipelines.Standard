@@ -1,0 +1,415 @@
+type,member,signature
+Rendering.Universal.Bloom,.ctor,Bloom()
+Rendering.Universal.Bloom,IsActive,bool IsActive()
+Rendering.Universal.Bloom,clamp,MinFloatParameter clamp { get; }
+Rendering.Universal.Bloom,dirtIntensity,MinFloatParameter dirtIntensity { get; }
+Rendering.Universal.Bloom,dirtTexture,TextureParameter dirtTexture { get; }
+Rendering.Universal.Bloom,downscale,DownscaleParameter downscale { get; }
+Rendering.Universal.Bloom,highQualityFiltering,BoolParameter highQualityFiltering { get; }
+Rendering.Universal.Bloom,intensity,MinFloatParameter intensity { get; }
+Rendering.Universal.Bloom,maxIterations,ClampedIntParameter maxIterations { get; }
+Rendering.Universal.Bloom,scatter,ClampedFloatParameter scatter { get; }
+Rendering.Universal.Bloom,threshold,MinFloatParameter threshold { get; }
+Rendering.Universal.Bloom,tint,ColorParameter tint { get; }
+Rendering.Universal.BloomDownscaleMode,Half,Rendering.Universal.BloomDownscaleMode.Half = 0
+Rendering.Universal.BloomDownscaleMode,Quarter,Rendering.Universal.BloomDownscaleMode.Quarter = 1
+Rendering.Universal.CameraData,GetGPUProjectionMatrix,Matrix4x4 GetGPUProjectionMatrix(int = 0)
+Rendering.Universal.CameraData,GetProjectionMatrix,Matrix4x4 GetProjectionMatrix(int = 0)
+Rendering.Universal.CameraData,GetViewMatrix,Matrix4x4 GetViewMatrix(int = 0)
+Rendering.Universal.CameraData,IsCameraProjectionMatrixFlipped,bool IsCameraProjectionMatrixFlipped()
+Rendering.Universal.CameraData,camera,Camera camera { get; }
+Rendering.Universal.CameraData,cameraTargetDescriptor,RenderTextureDescriptor cameraTargetDescriptor { get; }
+Rendering.Universal.CameraData,cameraType,CameraType cameraType { get; }
+Rendering.Universal.CameraData,isHdrEnabled,bool isHdrEnabled { get; }
+Rendering.Universal.CameraData,isPreviewCamera,bool isPreviewCamera { get; }
+Rendering.Universal.CameraData,isSceneViewCamera,bool isSceneViewCamera { get; }
+Rendering.Universal.CameraData,postProcessEnabled,bool postProcessEnabled { get; }
+Rendering.Universal.CameraData,renderScale,float renderScale { get; }
+Rendering.Universal.CameraData,renderType,CameraRenderType renderType { get; }
+Rendering.Universal.CameraData,renderer,ScriptableRenderer renderer { get; }
+Rendering.Universal.CameraData,requiresDepthTexture,bool requiresDepthTexture { get; }
+Rendering.Universal.CameraData,requiresOpaqueTexture,bool requiresOpaqueTexture { get; }
+Rendering.Universal.CameraData,targetTexture,RenderTexture targetTexture { get; }
+Rendering.Universal.CameraData,worldSpaceCameraPos,Vector3 worldSpaceCameraPos { get; }
+Rendering.Universal.CameraExtensions,GetUniversalAdditionalCameraData,static UniversalAdditionalCameraData GetUniversalAdditionalCameraData(Camera)
+Rendering.Universal.CameraOverrideOption,Off,Rendering.Universal.CameraOverrideOption.Off = 0
+Rendering.Universal.CameraOverrideOption,On,Rendering.Universal.CameraOverrideOption.On = 1
+Rendering.Universal.CameraOverrideOption,UsePipelineSettings,Rendering.Universal.CameraOverrideOption.UsePipelineSettings = 2
+Rendering.Universal.CameraRenderType,Base,Rendering.Universal.CameraRenderType.Base = 0
+Rendering.Universal.CameraRenderType,Overlay,Rendering.Universal.CameraRenderType.Overlay = 1
+Rendering.Universal.ClearFlag,All,Rendering.Universal.ClearFlag.All = 7
+Rendering.Universal.ClearFlag,Color,Rendering.Universal.ClearFlag.Color = 1
+Rendering.Universal.ClearFlag,ColorStencil,Rendering.Universal.ClearFlag.ColorStencil = 5
+Rendering.Universal.ClearFlag,Depth,Rendering.Universal.ClearFlag.Depth = 2
+Rendering.Universal.ClearFlag,DepthStencil,Rendering.Universal.ClearFlag.DepthStencil = 6
+Rendering.Universal.ClearFlag,None,Rendering.Universal.ClearFlag.None = 0
+Rendering.Universal.ClearFlag,Stencil,Rendering.Universal.ClearFlag.Stencil = 4
+Rendering.Universal.ColorAdjustments,.ctor,ColorAdjustments()
+Rendering.Universal.ColorAdjustments,IsActive,bool IsActive()
+Rendering.Universal.ColorAdjustments,colorFilter,ColorParameter colorFilter { get; }
+Rendering.Universal.ColorAdjustments,contrast,ClampedFloatParameter contrast { get; }
+Rendering.Universal.ColorAdjustments,hueShift,ClampedFloatParameter hueShift { get; }
+Rendering.Universal.ColorAdjustments,postExposure,FloatParameter postExposure { get; }
+Rendering.Universal.ColorAdjustments,saturation,ClampedFloatParameter saturation { get; }
+Rendering.Universal.ColorGradingMode,HighDynamicRange,Rendering.Universal.ColorGradingMode.HighDynamicRange = 1
+Rendering.Universal.ColorGradingMode,LowDynamicRange,Rendering.Universal.ColorGradingMode.LowDynamicRange = 0
+Rendering.Universal.CopyDepthMode,AfterOpaques,Rendering.Universal.CopyDepthMode.AfterOpaques = 0
+Rendering.Universal.CopyDepthMode,AfterTransparents,Rendering.Universal.CopyDepthMode.AfterTransparents = 1
+Rendering.Universal.CopyDepthMode,ForcePrepass,Rendering.Universal.CopyDepthMode.ForcePrepass = 2
+Rendering.Universal.DepthFormat,Default,Rendering.Universal.DepthFormat.Default = 0
+Rendering.Universal.DepthFormat,Depth_16,Rendering.Universal.DepthFormat.Depth_16 = 90
+Rendering.Universal.DepthFormat,Depth_24,Rendering.Universal.DepthFormat.Depth_24 = 91
+Rendering.Universal.DepthFormat,Depth_24_Stencil_8,Rendering.Universal.DepthFormat.Depth_24_Stencil_8 = 92
+Rendering.Universal.DepthFormat,Depth_32,Rendering.Universal.DepthFormat.Depth_32 = 93
+Rendering.Universal.DepthFormat,Depth_32_Stencil_8,Rendering.Universal.DepthFormat.Depth_32_Stencil_8 = 94
+Rendering.Universal.Downsampling,None,Rendering.Universal.Downsampling.None = 0
+Rendering.Universal.Downsampling,_2xBilinear,Rendering.Universal.Downsampling._2xBilinear = 1
+Rendering.Universal.Downsampling,_4xBilinear,Rendering.Universal.Downsampling._4xBilinear = 3
+Rendering.Universal.Downsampling,_4xBox,Rendering.Universal.Downsampling._4xBox = 2
+Rendering.Universal.DownscaleParameter,.ctor,"DownscaleParameter(BloomDownscaleMode, bool = False)"
+Rendering.Universal.HDRColorBufferPrecision,_32Bits,Rendering.Universal.HDRColorBufferPrecision._32Bits = 0
+Rendering.Universal.HDRColorBufferPrecision,_64Bits,Rendering.Universal.HDRColorBufferPrecision._64Bits = 1
+Rendering.Universal.IntermediateTextureMode,Always,Rendering.Universal.IntermediateTextureMode.Always = 1
+Rendering.Universal.IntermediateTextureMode,Auto,Rendering.Universal.IntermediateTextureMode.Auto = 0
+Rendering.Universal.LightExtensions,GetUniversalAdditionalLightData,static UniversalAdditionalLightData GetUniversalAdditionalLightData(Light)
+Rendering.Universal.LightRenderingMode,Disabled,Rendering.Universal.LightRenderingMode.Disabled = 0
+Rendering.Universal.LightRenderingMode,PerPixel,Rendering.Universal.LightRenderingMode.PerPixel = 1
+Rendering.Universal.LightRenderingMode,PerVertex,Rendering.Universal.LightRenderingMode.PerVertex = 2
+Rendering.Universal.MsaaQuality,Disabled,Rendering.Universal.MsaaQuality.Disabled = 1
+Rendering.Universal.MsaaQuality,_2x,Rendering.Universal.MsaaQuality._2x = 2
+Rendering.Universal.MsaaQuality,_4x,Rendering.Universal.MsaaQuality._4x = 4
+Rendering.Universal.MsaaQuality,_8x,Rendering.Universal.MsaaQuality._8x = 8
+Rendering.Universal.PostProcessData,.ctor,PostProcessData()
+Rendering.Universal.PostProcessData,shaders,PostProcessData.ShaderResources shaders { get; }
+Rendering.Universal.PostProcessData,textures,PostProcessData.TextureResources textures { get; }
+Rendering.Universal.PostProcessData.ShaderResources,LensFlareDataDrivenPS,Shader LensFlareDataDrivenPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,LensFlareScreenSpacePS,Shader LensFlareScreenSpacePS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,bloomPS,Shader bloomPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,bokehDepthOfFieldPS,Shader bokehDepthOfFieldPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,cameraMotionBlurPS,Shader cameraMotionBlurPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,easuPS,Shader easuPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,finalPostPassPS,Shader finalPostPassPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,gaussianDepthOfFieldPS,Shader gaussianDepthOfFieldPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,lutBuilderHdrPS,Shader lutBuilderHdrPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,lutBuilderLdrPS,Shader lutBuilderLdrPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,paniniProjectionPS,Shader paniniProjectionPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,scalingSetupPS,Shader scalingSetupPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,stopNanPS,Shader stopNanPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,subpixelMorphologicalAntialiasingPS,Shader subpixelMorphologicalAntialiasingPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,temporalAntialiasingPS,Shader temporalAntialiasingPS { get; set; }
+Rendering.Universal.PostProcessData.ShaderResources,uberPostPS,Shader uberPostPS { get; set; }
+Rendering.Universal.PostProcessData.TextureResources,blueNoise16LTex,Texture2D[] blueNoise16LTex { get; set; }
+Rendering.Universal.PostProcessData.TextureResources,filmGrainTex,Texture2D[] filmGrainTex { get; set; }
+Rendering.Universal.PostProcessData.TextureResources,smaaAreaTex,Texture2D smaaAreaTex { get; set; }
+Rendering.Universal.PostProcessData.TextureResources,smaaSearchTex,Texture2D smaaSearchTex { get; set; }
+Rendering.Universal.RenderGraphSettings,.ctor,RenderGraphSettings()
+Rendering.Universal.RenderGraphSettings,version,int version { get; }
+Rendering.Universal.RenderPassEvent,AfterRendering,Rendering.Universal.RenderPassEvent.AfterRendering = 1000
+Rendering.Universal.RenderPassEvent,AfterRenderingDeferredLights,Rendering.Universal.RenderPassEvent.AfterRenderingDeferredLights = 240
+Rendering.Universal.RenderPassEvent,AfterRenderingGbuffer,Rendering.Universal.RenderPassEvent.AfterRenderingGbuffer = 220
+Rendering.Universal.RenderPassEvent,AfterRenderingOpaques,Rendering.Universal.RenderPassEvent.AfterRenderingOpaques = 300
+Rendering.Universal.RenderPassEvent,AfterRenderingPostProcessing,Rendering.Universal.RenderPassEvent.AfterRenderingPostProcessing = 600
+Rendering.Universal.RenderPassEvent,AfterRenderingPrePasses,Rendering.Universal.RenderPassEvent.AfterRenderingPrePasses = 200
+Rendering.Universal.RenderPassEvent,AfterRenderingShadows,Rendering.Universal.RenderPassEvent.AfterRenderingShadows = 100
+Rendering.Universal.RenderPassEvent,AfterRenderingSkybox,Rendering.Universal.RenderPassEvent.AfterRenderingSkybox = 400
+Rendering.Universal.RenderPassEvent,AfterRenderingTransparents,Rendering.Universal.RenderPassEvent.AfterRenderingTransparents = 500
+Rendering.Universal.RenderPassEvent,BeforeRendering,Rendering.Universal.RenderPassEvent.BeforeRendering = 0
+Rendering.Universal.RenderPassEvent,BeforeRenderingDeferredLights,Rendering.Universal.RenderPassEvent.BeforeRenderingDeferredLights = 230
+Rendering.Universal.RenderPassEvent,BeforeRenderingGbuffer,Rendering.Universal.RenderPassEvent.BeforeRenderingGbuffer = 210
+Rendering.Universal.RenderPassEvent,BeforeRenderingOpaques,Rendering.Universal.RenderPassEvent.BeforeRenderingOpaques = 250
+Rendering.Universal.RenderPassEvent,BeforeRenderingPostProcessing,Rendering.Universal.RenderPassEvent.BeforeRenderingPostProcessing = 550
+Rendering.Universal.RenderPassEvent,BeforeRenderingPrePasses,Rendering.Universal.RenderPassEvent.BeforeRenderingPrePasses = 150
+Rendering.Universal.RenderPassEvent,BeforeRenderingShadows,Rendering.Universal.RenderPassEvent.BeforeRenderingShadows = 50
+Rendering.Universal.RenderPassEvent,BeforeRenderingSkybox,Rendering.Universal.RenderPassEvent.BeforeRenderingSkybox = 350
+Rendering.Universal.RenderPassEvent,BeforeRenderingTransparents,Rendering.Universal.RenderPassEvent.BeforeRenderingTransparents = 450
+Rendering.Universal.RenderingData,cameraData,CameraData cameraData { get; }
+Rendering.Universal.RenderingData,cullResults,CullingResults cullResults { get; }
+Rendering.Universal.RenderingData,perObjectData,PerObjectData perObjectData { get; }
+Rendering.Universal.RenderingData,postProcessingEnabled,bool postProcessingEnabled { get; }
+Rendering.Universal.RenderingData,supportsDynamicBatching,bool supportsDynamicBatching { get; }
+Rendering.Universal.RenderingMode,Deferred,Rendering.Universal.RenderingMode.Deferred = 1
+Rendering.Universal.RenderingMode,Forward,Rendering.Universal.RenderingMode.Forward = 0
+Rendering.Universal.RenderingMode,ForwardPlus,Rendering.Universal.RenderingMode.ForwardPlus = 2
+Rendering.Universal.RenderingUtils,CreateDrawingSettings,"static DrawingSettings CreateDrawingSettings(ShaderTagId, UniversalRenderingData, UniversalCameraData, UniversalLightData, SortingCriteria) / static DrawingSettings CreateDrawingSettings(List<ShaderTagId>, UniversalRenderingData, UniversalCameraData, UniversalLightData, SortingCriteria)"
+Rendering.Universal.RenderingUtils,ReAllocateHandleIfNeeded,"static bool ReAllocateHandleIfNeeded(ref RTHandle, ref RenderTextureDescriptor, FilterMode = Point, TextureWrapMode = Repeat, bool = False, int = 1, float = 0, string = )"
+Rendering.Universal.RenderingUtils,SetViewAndProjectionMatrices,"static void SetViewAndProjectionMatrices(CommandBuffer, Matrix4x4, Matrix4x4, bool) / static void SetViewAndProjectionMatrices(RasterCommandBuffer, Matrix4x4, Matrix4x4, bool)"
+Rendering.Universal.RenderingUtils,SupportsRenderTextureFormat,static bool SupportsRenderTextureFormat(RenderTextureFormat)
+Rendering.Universal.ScriptableRenderPass,.ctor,ScriptableRenderPass()
+Rendering.Universal.ScriptableRenderPass,ConfigureInput,void ConfigureInput(ScriptableRenderPassInput)
+Rendering.Universal.ScriptableRenderPass,CreateDrawingSettings,"static DrawingSettings CreateDrawingSettings(ShaderTagId, UniversalRenderingData, UniversalCameraData, UniversalLightData, SortingCriteria) / static DrawingSettings CreateDrawingSettings(List<ShaderTagId>, UniversalRenderingData, UniversalCameraData, UniversalLightData, SortingCriteria)"
+Rendering.Universal.ScriptableRenderPass,OnCameraCleanup,void OnCameraCleanup(CommandBuffer)
+Rendering.Universal.ScriptableRenderPass,RecordRenderGraph,"void RecordRenderGraph(RenderGraph, ContextContainer)"
+Rendering.Universal.ScriptableRenderPass,input,ScriptableRenderPassInput input { get; }
+Rendering.Universal.ScriptableRenderPass,operators,"LessThan(ScriptableRenderPass, ScriptableRenderPass) / GreaterThan(ScriptableRenderPass, ScriptableRenderPass) / Equality(ScriptableRenderPass, ScriptableRenderPass) / Inequality(ScriptableRenderPass, ScriptableRenderPass) / Implicit(ScriptableRenderPass)"
+Rendering.Universal.ScriptableRenderPass,passName,string passName { get; set; }
+Rendering.Universal.ScriptableRenderPass,profilingSampler,ProfilingSampler profilingSampler { get; set; }
+Rendering.Universal.ScriptableRenderPass,renderPassEvent,RenderPassEvent renderPassEvent { get; set; }
+Rendering.Universal.ScriptableRenderPass,requiresIntermediateTexture,bool requiresIntermediateTexture { get; set; }
+Rendering.Universal.ScriptableRenderPassInput,Color,Rendering.Universal.ScriptableRenderPassInput.Color = 4
+Rendering.Universal.ScriptableRenderPassInput,Depth,Rendering.Universal.ScriptableRenderPassInput.Depth = 1
+Rendering.Universal.ScriptableRenderPassInput,Motion,Rendering.Universal.ScriptableRenderPassInput.Motion = 8
+Rendering.Universal.ScriptableRenderPassInput,None,Rendering.Universal.ScriptableRenderPassInput.None = 0
+Rendering.Universal.ScriptableRenderPassInput,Normal,Rendering.Universal.ScriptableRenderPassInput.Normal = 2
+Rendering.Universal.ScriptableRenderer,.ctor,ScriptableRenderer(ScriptableRendererData)
+Rendering.Universal.ScriptableRenderer,Dispose,void Dispose()
+Rendering.Universal.ScriptableRenderer,EnqueuePass,void EnqueuePass(ScriptableRenderPass)
+Rendering.Universal.ScriptableRenderer,GetCameraClearFlag,static ClearFlag GetCameraClearFlag(UniversalCameraData)
+Rendering.Universal.ScriptableRenderer,OnBeginRenderGraphFrame,void OnBeginRenderGraphFrame()
+Rendering.Universal.ScriptableRenderer,OnEndRenderGraphFrame,void OnEndRenderGraphFrame()
+Rendering.Universal.ScriptableRenderer,SetCameraMatrices,"static void SetCameraMatrices(CommandBuffer, UniversalCameraData, bool) / static void SetCameraMatrices(RasterCommandBuffer, UniversalCameraData, bool) / static void SetCameraMatrices(CommandBuffer, ref CameraData, bool)"
+Rendering.Universal.ScriptableRenderer,SetupCullingParameters,"void SetupCullingParameters(ref ScriptableCullingParameters, ref CameraData)"
+Rendering.Universal.ScriptableRenderer,SupportsCameraNormals,bool SupportsCameraNormals()
+Rendering.Universal.ScriptableRenderer,SupportsCameraOpaque,bool SupportsCameraOpaque()
+Rendering.Universal.ScriptableRenderer,operators,"Equality(ScriptableRenderer, ScriptableRenderer) / Inequality(ScriptableRenderer, ScriptableRenderer) / Implicit(ScriptableRenderer)"
+Rendering.Universal.ScriptableRenderer,profilingExecute,static ProfilingSampler profilingExecute { get; }
+Rendering.Universal.ScriptableRenderer,supportedRenderingFeatures,ScriptableRenderer.RenderingFeatures supportedRenderingFeatures { get; }
+Rendering.Universal.ScriptableRenderer,unsupportedGraphicsDeviceTypes,GraphicsDeviceType[] unsupportedGraphicsDeviceTypes { get; }
+Rendering.Universal.ScriptableRenderer.RenderingFeatures,cameraStacking,bool cameraStacking
+Rendering.Universal.ScriptableRenderer.RenderingFeatures,msaa,bool msaa
+Rendering.Universal.ScriptableRendererData,.ctor,ScriptableRendererData()
+Rendering.Universal.ScriptableRendererData,SetDirty,void SetDirty()
+Rendering.Universal.ScriptableRendererData,TryGetRendererFeature,bool TryGetRendererFeature<T>(out T)
+Rendering.Universal.ScriptableRendererData,rendererFeatures,List<ScriptableRendererFeature> rendererFeatures { get; }
+Rendering.Universal.ScriptableRendererData,useNativeRenderPass,bool useNativeRenderPass { get; set; }
+Rendering.Universal.ScriptableRendererFeature,.ctor,ScriptableRendererFeature()
+Rendering.Universal.ScriptableRendererFeature,AddRenderPasses,"void AddRenderPasses(ScriptableRenderer, ref RenderingData)"
+Rendering.Universal.ScriptableRendererFeature,Create,void Create()
+Rendering.Universal.ScriptableRendererFeature,Dispose,void Dispose()
+Rendering.Universal.ScriptableRendererFeature,OnCameraPreCull,"void OnCameraPreCull(ScriptableRenderer, ref CameraData)"
+Rendering.Universal.ScriptableRendererFeature,SetActive,void SetActive(bool)
+Rendering.Universal.ScriptableRendererFeature,isActive,bool isActive { get; }
+Rendering.Universal.ShadowQuality,Disabled,Rendering.Universal.ShadowQuality.Disabled = 0
+Rendering.Universal.ShadowQuality,HardShadows,Rendering.Universal.ShadowQuality.HardShadows = 1
+Rendering.Universal.ShadowQuality,SoftShadows,Rendering.Universal.ShadowQuality.SoftShadows = 2
+Rendering.Universal.ShadowResolution,_1024,Rendering.Universal.ShadowResolution._1024 = 1024
+Rendering.Universal.ShadowResolution,_2048,Rendering.Universal.ShadowResolution._2048 = 2048
+Rendering.Universal.ShadowResolution,_256,Rendering.Universal.ShadowResolution._256 = 256
+Rendering.Universal.ShadowResolution,_4096,Rendering.Universal.ShadowResolution._4096 = 4096
+Rendering.Universal.ShadowResolution,_512,Rendering.Universal.ShadowResolution._512 = 512
+Rendering.Universal.ShadowResolution,_8192,Rendering.Universal.ShadowResolution._8192 = 8192
+Rendering.Universal.ShadowSliceData,Clear,void Clear()
+Rendering.Universal.ShadowSliceData,offsetX,int offsetX
+Rendering.Universal.ShadowSliceData,offsetY,int offsetY
+Rendering.Universal.ShadowSliceData,projectionMatrix,Matrix4x4 projectionMatrix
+Rendering.Universal.ShadowSliceData,resolution,int resolution
+Rendering.Universal.ShadowSliceData,shadowTransform,Matrix4x4 shadowTransform
+Rendering.Universal.ShadowSliceData,splitData,ShadowSplitData splitData
+Rendering.Universal.ShadowSliceData,viewMatrix,Matrix4x4 viewMatrix
+Rendering.Universal.ShadowUtils,ApplySliceTransform,"static void ApplySliceTransform(ref ShadowSliceData, int, int)"
+Rendering.Universal.ShadowUtils,ExtractDirectionalLightMatrix,"static bool ExtractDirectionalLightMatrix(ref CullingResults, UniversalShadowData, int, int, int, int, int, float, out Vector4, out ShadowSliceData)"
+Rendering.Universal.ShadowUtils,GetMaxTileResolutionInAtlas,"static int GetMaxTileResolutionInAtlas(int, int, int)"
+Rendering.Universal.ShadowUtils,GetShadowBias,"static Vector4 GetShadowBias(ref VisibleLight, int, UniversalShadowData, Matrix4x4, float)"
+Rendering.Universal.SoftShadowQuality,High,Rendering.Universal.SoftShadowQuality.High = 3
+Rendering.Universal.SoftShadowQuality,Low,Rendering.Universal.SoftShadowQuality.Low = 1
+Rendering.Universal.SoftShadowQuality,Medium,Rendering.Universal.SoftShadowQuality.Medium = 2
+Rendering.Universal.SoftShadowQuality,UsePipelineSettings,Rendering.Universal.SoftShadowQuality.UsePipelineSettings = 0
+Rendering.Universal.StencilStateData,failOperation,StencilOp failOperation
+Rendering.Universal.StencilStateData,overrideStencilState,bool overrideStencilState
+Rendering.Universal.StencilStateData,passOperation,StencilOp passOperation
+Rendering.Universal.StencilStateData,stencilCompareFunction,CompareFunction stencilCompareFunction
+Rendering.Universal.StencilStateData,stencilReference,int stencilReference
+Rendering.Universal.StencilStateData,zFailOperation,StencilOp zFailOperation
+Rendering.Universal.StoreActionsOptimization,Auto,Rendering.Universal.StoreActionsOptimization.Auto = 0
+Rendering.Universal.StoreActionsOptimization,Discard,Rendering.Universal.StoreActionsOptimization.Discard = 1
+Rendering.Universal.StoreActionsOptimization,Store,Rendering.Universal.StoreActionsOptimization.Store = 2
+Rendering.Universal.Tonemapping,.ctor,Tonemapping()
+Rendering.Universal.Tonemapping,IsActive,bool IsActive()
+Rendering.Universal.Tonemapping,mode,TonemappingModeParameter mode { get; }
+Rendering.Universal.TonemappingMode,ACES,Rendering.Universal.TonemappingMode.ACES = 2
+Rendering.Universal.TonemappingMode,Neutral,Rendering.Universal.TonemappingMode.Neutral = 1
+Rendering.Universal.TonemappingMode,None,Rendering.Universal.TonemappingMode.None = 0
+Rendering.Universal.TonemappingModeParameter,.ctor,"TonemappingModeParameter(TonemappingMode, bool = False)"
+Rendering.Universal.URPDefaultVolumeProfileSettings,.ctor,URPDefaultVolumeProfileSettings()
+Rendering.Universal.URPDefaultVolumeProfileSettings,version,int version { get; }
+Rendering.Universal.URPDefaultVolumeProfileSettings,volumeProfile,VolumeProfile volumeProfile { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,.ctor,UniversalAdditionalCameraData()
+Rendering.Universal.UniversalAdditionalCameraData,OnAfterDeserialize,void OnAfterDeserialize()
+Rendering.Universal.UniversalAdditionalCameraData,OnBeforeSerialize,void OnBeforeSerialize()
+Rendering.Universal.UniversalAdditionalCameraData,OnDestroy,void OnDestroy()
+Rendering.Universal.UniversalAdditionalCameraData,SetRenderer,void SetRenderer(int)
+Rendering.Universal.UniversalAdditionalCameraData,renderPostProcessing,bool renderPostProcessing { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,renderShadows,bool renderShadows { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,renderType,CameraRenderType renderType { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,requiresColorOption,CameraOverrideOption requiresColorOption { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,requiresColorTexture,bool requiresColorTexture { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,requiresDepthOption,CameraOverrideOption requiresDepthOption { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,requiresDepthTexture,bool requiresDepthTexture { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,requiresVolumeFrameworkUpdate,bool requiresVolumeFrameworkUpdate { get; }
+Rendering.Universal.UniversalAdditionalCameraData,scriptableRenderer,ScriptableRenderer scriptableRenderer { get; }
+Rendering.Universal.UniversalAdditionalCameraData,version,int version { get; }
+Rendering.Universal.UniversalAdditionalCameraData,volumeLayerMask,LayerMask volumeLayerMask { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,volumeStack,VolumeStack volumeStack { get; set; }
+Rendering.Universal.UniversalAdditionalCameraData,volumeTrigger,Transform volumeTrigger { get; set; }
+Rendering.Universal.UniversalAdditionalLightData,.ctor,UniversalAdditionalLightData()
+Rendering.Universal.UniversalAdditionalLightData,OnAfterDeserialize,void OnAfterDeserialize()
+Rendering.Universal.UniversalAdditionalLightData,OnBeforeSerialize,void OnBeforeSerialize()
+Rendering.Universal.UniversalAdditionalLightData,softShadowQuality,SoftShadowQuality softShadowQuality { get; set; }
+Rendering.Universal.UniversalAdditionalLightData,usePipelineSettings,bool usePipelineSettings { get; set; }
+Rendering.Universal.UniversalCameraData,.ctor,UniversalCameraData()
+Rendering.Universal.UniversalCameraData,GetGPUProjectionMatrix,"Matrix4x4 GetGPUProjectionMatrix(int = 0) / Matrix4x4 GetGPUProjectionMatrix(bool, int = 0)"
+Rendering.Universal.UniversalCameraData,GetGPUProjectionMatrixNoJitter,"Matrix4x4 GetGPUProjectionMatrixNoJitter(int = 0) / Matrix4x4 GetGPUProjectionMatrixNoJitter(bool, int = 0)"
+Rendering.Universal.UniversalCameraData,GetProjectionMatrix,Matrix4x4 GetProjectionMatrix(int = 0)
+Rendering.Universal.UniversalCameraData,GetViewMatrix,Matrix4x4 GetViewMatrix(int = 0)
+Rendering.Universal.UniversalCameraData,IsCameraProjectionMatrixFlipped,bool IsCameraProjectionMatrixFlipped()
+Rendering.Universal.UniversalCameraData,Reset,void Reset()
+Rendering.Universal.UniversalCameraData,backgroundColor,Color backgroundColor { get; set; }
+Rendering.Universal.UniversalCameraData,baseCamera,Camera baseCamera { get; set; }
+Rendering.Universal.UniversalCameraData,camera,Camera camera { get; set; }
+Rendering.Universal.UniversalCameraData,cameraTargetDescriptor,RenderTextureDescriptor cameraTargetDescriptor { get; set; }
+Rendering.Universal.UniversalCameraData,cameraType,CameraType cameraType { get; set; }
+Rendering.Universal.UniversalCameraData,defaultOpaqueSortFlags,SortingCriteria defaultOpaqueSortFlags { get; set; }
+Rendering.Universal.UniversalCameraData,isDefaultViewport,bool isDefaultViewport { get; set; }
+Rendering.Universal.UniversalCameraData,isGameCamera,bool isGameCamera { get; }
+Rendering.Universal.UniversalCameraData,isHdrEnabled,bool isHdrEnabled { get; set; }
+Rendering.Universal.UniversalCameraData,isPreviewCamera,bool isPreviewCamera { get; }
+Rendering.Universal.UniversalCameraData,isSceneViewCamera,bool isSceneViewCamera { get; }
+Rendering.Universal.UniversalCameraData,maxShadowDistance,float maxShadowDistance { get; set; }
+Rendering.Universal.UniversalCameraData,postProcessEnabled,bool postProcessEnabled { get; set; }
+Rendering.Universal.UniversalCameraData,postProcessingRequiresDepthTexture,bool postProcessingRequiresDepthTexture { get; set; }
+Rendering.Universal.UniversalCameraData,renderScale,float renderScale { get; set; }
+Rendering.Universal.UniversalCameraData,renderType,CameraRenderType renderType { get; set; }
+Rendering.Universal.UniversalCameraData,renderer,ScriptableRenderer renderer { get; set; }
+Rendering.Universal.UniversalCameraData,requiresDepthTexture,bool requiresDepthTexture { get; set; }
+Rendering.Universal.UniversalCameraData,requiresOpaqueTexture,bool requiresOpaqueTexture { get; set; }
+Rendering.Universal.UniversalCameraData,resolveFinalTarget,bool resolveFinalTarget { get; set; }
+Rendering.Universal.UniversalCameraData,scaledHeight,int scaledHeight { get; set; }
+Rendering.Universal.UniversalCameraData,scaledWidth,int scaledWidth { get; set; }
+Rendering.Universal.UniversalCameraData,targetTexture,RenderTexture targetTexture { get; set; }
+Rendering.Universal.UniversalCameraData,volumeLayerMask,LayerMask volumeLayerMask { get; set; }
+Rendering.Universal.UniversalCameraData,volumeTrigger,Transform volumeTrigger { get; set; }
+Rendering.Universal.UniversalCameraData,worldSpaceCameraPos,Vector3 worldSpaceCameraPos { get; set; }
+Rendering.Universal.UniversalLightData,.ctor,UniversalLightData()
+Rendering.Universal.UniversalLightData,Reset,void Reset()
+Rendering.Universal.UniversalLightData,additionalLightsCount,int additionalLightsCount { get; set; }
+Rendering.Universal.UniversalLightData,mainLightIndex,int mainLightIndex { get; set; }
+Rendering.Universal.UniversalLightData,maxPerObjectAdditionalLightsCount,int maxPerObjectAdditionalLightsCount { get; set; }
+Rendering.Universal.UniversalLightData,shadeAdditionalLightsPerVertex,bool shadeAdditionalLightsPerVertex { get; set; }
+Rendering.Universal.UniversalLightData,supportsAdditionalLights,bool supportsAdditionalLights { get; set; }
+Rendering.Universal.UniversalLightData,visibleLights,NativeArray<VisibleLight> visibleLights { get; }
+Rendering.Universal.UniversalPostProcessingData,.ctor,UniversalPostProcessingData()
+Rendering.Universal.UniversalPostProcessingData,Reset,void Reset()
+Rendering.Universal.UniversalPostProcessingData,gradingMode,ColorGradingMode gradingMode { get; set; }
+Rendering.Universal.UniversalPostProcessingData,isEnabled,bool isEnabled { get; set; }
+Rendering.Universal.UniversalPostProcessingData,lutSize,int lutSize { get; set; }
+Rendering.Universal.UniversalPostProcessingData,useFastSRGBLinearConversion,bool useFastSRGBLinearConversion { get; set; }
+Rendering.Universal.UniversalRenderPipeline,GetLightAttenuationAndSpotDirection,"static void GetLightAttenuationAndSpotDirection(LightType, float, Matrix4x4, float, Nullable<float>, out Vector4, out Vector4)"
+Rendering.Universal.UniversalRenderPipeline,InitializeLightConstants_Common,"static void InitializeLightConstants_Common(NativeArray<VisibleLight>, int, out Vector4, out Vector4, out Vector4, out Vector4, out Vector4)"
+Rendering.Universal.UniversalRenderPipeline,IsGameCamera,static bool IsGameCamera(Camera)
+Rendering.Universal.UniversalRenderPipeline,ToString,string ToString()
+Rendering.Universal.UniversalRenderPipeline,asset,static UniversalRenderPipelineAsset asset { get; }
+Rendering.Universal.UniversalRenderPipeline,defaultSettings,RenderPipelineGlobalSettings defaultSettings { get; }
+Rendering.Universal.UniversalRenderPipeline,k_ShaderTagName,const string k_ShaderTagName
+Rendering.Universal.UniversalRenderPipeline,maxNumIterationsEnclosingSphere,const int maxNumIterationsEnclosingSphere
+Rendering.Universal.UniversalRenderPipeline,maxPerObjectLights,static int maxPerObjectLights { get; }
+Rendering.Universal.UniversalRenderPipeline,maxRenderScale,const float maxRenderScale
+Rendering.Universal.UniversalRenderPipeline,maxShadowBias,const float maxShadowBias
+Rendering.Universal.UniversalRenderPipeline,maxVisibleAdditionalLights,static int maxVisibleAdditionalLights { get; }
+Rendering.Universal.UniversalRenderPipeline,minRenderScale,const float minRenderScale
+Rendering.Universal.UniversalRenderPipelineAsset,.ctor,UniversalRenderPipelineAsset()
+Rendering.Universal.UniversalRenderPipelineAsset,Create,static UniversalRenderPipelineAsset Create(ScriptableRendererData = null)
+Rendering.Universal.UniversalRenderPipelineAsset,GetRenderer,ScriptableRenderer GetRenderer(int)
+Rendering.Universal.UniversalRenderPipelineAsset,OnAfterDeserialize,void OnAfterDeserialize()
+Rendering.Universal.UniversalRenderPipelineAsset,OnBeforeSerialize,void OnBeforeSerialize()
+Rendering.Universal.UniversalRenderPipelineAsset,additionalLightsRenderingMode,LightRenderingMode additionalLightsRenderingMode { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,cascade2Split,float cascade2Split { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,cascade3Split,Vector2 cascade3Split { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,cascade4Split,Vector3 cascade4Split { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,cascadeBorder,float cascadeBorder { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,colorGradingLutSize,int colorGradingLutSize { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,colorGradingMode,ColorGradingMode colorGradingMode { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,conservativeEnclosingSphere,bool conservativeEnclosingSphere { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,defaultLineMaterial,Material defaultLineMaterial { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,defaultMaterial,Material defaultMaterial { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,defaultParticleMaterial,Material defaultParticleMaterial { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,defaultShader,Shader defaultShader { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,hdrColorBufferPrecision,HDRColorBufferPrecision hdrColorBufferPrecision { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,isImmediateModeSupported,bool isImmediateModeSupported { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,k_MaxLutSize,const int k_MaxLutSize
+Rendering.Universal.UniversalRenderPipelineAsset,k_MinLutSize,const int k_MinLutSize
+Rendering.Universal.UniversalRenderPipelineAsset,mainLightRenderingMode,LightRenderingMode mainLightRenderingMode { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,mainLightShadowmapResolution,int mainLightShadowmapResolution { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,maxAdditionalLightsCount,int maxAdditionalLightsCount { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,msaaSampleCount,int msaaSampleCount { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,numIterationsEnclosingSphere,int numIterationsEnclosingSphere { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,opaqueDownsampling,Downsampling opaqueDownsampling { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,packagePath,static string packagePath { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,pipelineType,Type pipelineType { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,renderPipelineShaderTag,string renderPipelineShaderTag { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,renderScale,float renderScale { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,rendererDataList,ReadOnlySpan<ScriptableRendererData> rendererDataList { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,renderers,ReadOnlySpan<ScriptableRenderer> renderers { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,scriptableRenderer,ScriptableRenderer scriptableRenderer { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,shadowCascadeCount,int shadowCascadeCount { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,shadowDepthBias,float shadowDepthBias { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,shadowDistance,float shadowDistance { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,shadowNormalBias,float shadowNormalBias { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,storeActionsOptimization,StoreActionsOptimization storeActionsOptimization { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,supportsCameraDepthTexture,bool supportsCameraDepthTexture { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,supportsCameraOpaqueTexture,bool supportsCameraOpaqueTexture { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,supportsDynamicBatching,bool supportsDynamicBatching { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,supportsHDR,bool supportsHDR { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,supportsMainLightShadows,bool supportsMainLightShadows { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,supportsSoftShadows,bool supportsSoftShadows { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,upscalingFilter,UpscalingFilterSelection upscalingFilter { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,useFastSRGBLinearConversion,bool useFastSRGBLinearConversion { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,useSRPBatcher,bool useSRPBatcher { get; set; }
+Rendering.Universal.UniversalRenderPipelineAsset,volumeFrameworkUpdateMode,VolumeFrameworkUpdateMode volumeFrameworkUpdateMode { get; }
+Rendering.Universal.UniversalRenderPipelineAsset,volumeProfile,VolumeProfile volumeProfile { get; set; }
+Rendering.Universal.UniversalRenderPipelineGlobalSettings,.ctor,UniversalRenderPipelineGlobalSettings()
+Rendering.Universal.UniversalRenderPipelineGlobalSettings,instance,static UniversalRenderPipelineGlobalSettings instance { get; }
+Rendering.Universal.UniversalRenderer,.ctor,UniversalRenderer(UniversalRendererData)
+Rendering.Universal.UniversalRenderer,CreateRenderGraphTexture,"static TextureHandle CreateRenderGraphTexture(RenderGraph, RenderTextureDescriptor, string, bool, FilterMode = Point, TextureWrapMode = Clamp)"
+Rendering.Universal.UniversalRenderer,IsOffscreenDepthTexture,static bool IsOffscreenDepthTexture(UniversalCameraData)
+Rendering.Universal.UniversalRendererData,.ctor,UniversalRendererData()
+Rendering.Universal.UniversalRendererData,copyDepthMode,CopyDepthMode copyDepthMode { get; set; }
+Rendering.Universal.UniversalRendererData,defaultStencilState,StencilStateData defaultStencilState { get; set; }
+Rendering.Universal.UniversalRendererData,depthAttachmentFormat,DepthFormat depthAttachmentFormat { get; set; }
+Rendering.Universal.UniversalRendererData,depthTextureFormat,DepthFormat depthTextureFormat { get; set; }
+Rendering.Universal.UniversalRendererData,intermediateTextureMode,IntermediateTextureMode intermediateTextureMode { get; set; }
+Rendering.Universal.UniversalRendererData,opaqueLayerMask,LayerMask opaqueLayerMask { get; set; }
+Rendering.Universal.UniversalRendererData,postProcessData,PostProcessData postProcessData { get; set; }
+Rendering.Universal.UniversalRendererData,renderingMode,RenderingMode renderingMode { get; set; }
+Rendering.Universal.UniversalRendererData,shadowTransparentReceive,bool shadowTransparentReceive { get; set; }
+Rendering.Universal.UniversalRendererData,transparentLayerMask,LayerMask transparentLayerMask { get; set; }
+Rendering.Universal.UniversalRenderingData,.ctor,UniversalRenderingData()
+Rendering.Universal.UniversalRenderingData,Reset,void Reset()
+Rendering.Universal.UniversalRenderingData,cullResults,CullingResults cullResults { get; }
+Rendering.Universal.UniversalRenderingData,opaqueLayerMask,LayerMask opaqueLayerMask { get; set; }
+Rendering.Universal.UniversalRenderingData,perObjectData,PerObjectData perObjectData { get; set; }
+Rendering.Universal.UniversalRenderingData,renderingMode,RenderingMode renderingMode { get; set; }
+Rendering.Universal.UniversalRenderingData,supportsDynamicBatching,bool supportsDynamicBatching { get; set; }
+Rendering.Universal.UniversalRenderingData,transparentLayerMask,LayerMask transparentLayerMask { get; set; }
+Rendering.Universal.UniversalResourceData,.ctor,UniversalResourceData()
+Rendering.Universal.UniversalResourceData,Reset,void Reset()
+Rendering.Universal.UniversalResourceData,activeColorTexture,TextureHandle activeColorTexture { get; }
+Rendering.Universal.UniversalResourceData,activeDepthTexture,TextureHandle activeDepthTexture { get; }
+Rendering.Universal.UniversalResourceData,afterPostProcessColor,TextureHandle afterPostProcessColor { get; set; }
+Rendering.Universal.UniversalResourceData,backBufferColor,TextureHandle backBufferColor { get; }
+Rendering.Universal.UniversalResourceData,backBufferDepth,TextureHandle backBufferDepth { get; }
+Rendering.Universal.UniversalResourceData,cameraColor,TextureHandle cameraColor { get; set; }
+Rendering.Universal.UniversalResourceData,cameraDepth,TextureHandle cameraDepth { get; set; }
+Rendering.Universal.UniversalResourceData,cameraDepthTexture,TextureHandle cameraDepthTexture { get; set; }
+Rendering.Universal.UniversalResourceData,cameraNormalsTexture,TextureHandle cameraNormalsTexture { get; set; }
+Rendering.Universal.UniversalResourceData,cameraOpaqueTexture,TextureHandle cameraOpaqueTexture { get; set; }
+Rendering.Universal.UniversalResourceData,internalColorLut,TextureHandle internalColorLut { get; set; }
+Rendering.Universal.UniversalResourceData,isActiveTargetBackBuffer,bool isActiveTargetBackBuffer { get; set; }
+Rendering.Universal.UniversalResourceData,mainShadowsTexture,TextureHandle mainShadowsTexture { get; set; }
+Rendering.Universal.UniversalShadowData,.ctor,UniversalShadowData()
+Rendering.Universal.UniversalShadowData,Reset,void Reset()
+Rendering.Universal.UniversalShadowData,bias,List<Vector4> bias { get; }
+Rendering.Universal.UniversalShadowData,mainLightShadowCascadeBorder,float mainLightShadowCascadeBorder { get; set; }
+Rendering.Universal.UniversalShadowData,mainLightShadowCascadesCount,int mainLightShadowCascadesCount { get; set; }
+Rendering.Universal.UniversalShadowData,mainLightShadowCascadesSplit,Vector3 mainLightShadowCascadesSplit { get; set; }
+Rendering.Universal.UniversalShadowData,mainLightShadowmapHeight,int mainLightShadowmapHeight { get; set; }
+Rendering.Universal.UniversalShadowData,mainLightShadowmapWidth,int mainLightShadowmapWidth { get; set; }
+Rendering.Universal.UniversalShadowData,shadowmapDepthBufferBits,int shadowmapDepthBufferBits { get; set; }
+Rendering.Universal.UniversalShadowData,supportsMainLightShadows,bool supportsMainLightShadows { get; set; }
+Rendering.Universal.UniversalShadowData,supportsSoftShadows,bool supportsSoftShadows { get; set; }
+Rendering.Universal.UpscalingFilterSelection,Auto,Rendering.Universal.UpscalingFilterSelection.Auto = 0
+Rendering.Universal.UpscalingFilterSelection,FSR,Rendering.Universal.UpscalingFilterSelection.FSR = 3
+Rendering.Universal.UpscalingFilterSelection,Linear,Rendering.Universal.UpscalingFilterSelection.Linear = 1
+Rendering.Universal.UpscalingFilterSelection,Point,Rendering.Universal.UpscalingFilterSelection.Point = 2
+Rendering.Universal.UpscalingFilterSelection,STP,Rendering.Universal.UpscalingFilterSelection.STP = 4
+Rendering.Universal.VolumeFrameworkUpdateMode,EveryFrame,Rendering.Universal.VolumeFrameworkUpdateMode.EveryFrame = 0
+Rendering.Universal.VolumeFrameworkUpdateMode,UsePipelineSettings,Rendering.Universal.VolumeFrameworkUpdateMode.UsePipelineSettings = 2
+Rendering.Universal.VolumeFrameworkUpdateMode,ViaScripting,Rendering.Universal.VolumeFrameworkUpdateMode.ViaScripting = 1
