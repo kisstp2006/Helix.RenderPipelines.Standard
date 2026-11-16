@@ -52,9 +52,10 @@ HX_TEST(Standard, TheFallbackErrorShaderDrawsOnEveryDevice)
     // around it; OpenGL 3.3 gets a 3.3 context.
     HX_REQUIRE(StartScripts());
     constexpr u32 size = 16;
-    bool gl33 = false;
+    bool gl33 = false, desktopGL = false;
     u32 devices = ForEachDevice([&](rhi::Device& device, StringView label) {
         ShaderFolder shaders;
+        desktopGL = desktopGL || device.Caps().backend == rhi::Backend::OpenGL;
         if (label.StartsWith("OpenGL 3.3"))
         {
             gl33 = true;
@@ -106,6 +107,7 @@ HX_TEST(Standard, TheFallbackErrorShaderDrawsOnEveryDevice)
                (platform::Window::IsSupported() && rhi::Device::IsBackendAvailable(rhi::Backend::WebGL2));
     std::printf("    %u devices\n", devices);
     HX_CHECK(devices > 0 || !any);
-    if (rhi::Device::IsBackendAvailable(rhi::Backend::OpenGL))
+    // Where desktop OpenGL draws (not on machines with only a GDI renderer), its 3.3 context does too.
+    if (desktopGL)
         HX_CHECK(gl33);
 }
