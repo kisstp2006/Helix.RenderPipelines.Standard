@@ -158,8 +158,8 @@ namespace helix::rendering::universal
         // The main light's cascades into the shadow atlas, their globals.
         void RecordMainLightShadows(engine::ScriptableRenderContext& context, RenderGraph& graph, ContextContainer& frame, engine::CommandBuffer& cmd);
 
-        engine::Material* copyDepth_ = nullptr;
-        engine::Material* sampling_ = nullptr;
+        // Held by id: the player's teardown may destroy them before the renderer goes.
+        engine::PPtr<engine::Material> copyDepth_, sampling_;
         // The post processing passes (their materials made on first use).
         ColorGradingLutPass lutPass_;
         PostProcessPass postPass_;

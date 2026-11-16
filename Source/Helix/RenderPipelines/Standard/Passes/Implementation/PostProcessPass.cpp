@@ -18,8 +18,9 @@ namespace helix::rendering::universal
     namespace
     {
         // The material of a shader of the data (made again when the data's shader changes).
-        Material* Make(Material*& m, Shader* shader)
+        Material* Make(PPtr<Material>& held, Shader* shader)
         {
+            Material* m = held.Get();
             if (m && m->shader() != shader)
             {
                 Object::DestroyImmediate(m);
@@ -27,6 +28,7 @@ namespace helix::rendering::universal
             }
             if (!m && shader)
                 m = Material::Create(shader);
+            held = PPtr<Material>(m);
             return m;
         }
 
@@ -128,7 +130,7 @@ namespace helix::rendering::universal
 
     ColorGradingLutPass::~ColorGradingLutPass()
     {
-        for (Material* m : {ldr_, hdr_})
+        for (Material* m : {ldr_.Get(), hdr_.Get()})
             if (m)
                 Object::DestroyImmediate(m);
     }
@@ -177,7 +179,7 @@ namespace helix::rendering::universal
 
     PostProcessPass::~PostProcessPass()
     {
-        for (Material* m : {bloom_, uber_})
+        for (Material* m : {bloom_.Get(), uber_.Get()})
             if (m)
                 Object::DestroyImmediate(m);
     }

@@ -180,19 +180,19 @@ namespace helix::rendering::universal
 
     UniversalRenderer::~UniversalRenderer()
     {
-        for (Material* m : {copyDepth_, sampling_})
+        for (Material* m : {copyDepth_.Get(), sampling_.Get()})
             if (m)
                 Object::DestroyImmediate(m);
     }
 
     void UniversalRenderer::EnsureMaterials()
     {
-        if (!copyDepth_)
+        if (!copyDepth_.Get())
             if (Shader* s = Shader::Find("Hidden/Universal Render Pipeline/CopyDepth"))
-                copyDepth_ = Material::Create(s);
-        if (!sampling_)
+                copyDepth_ = PPtr<Material>(Material::Create(s));
+        if (!sampling_.Get())
             if (Shader* s = Shader::Find("Hidden/Universal Render Pipeline/Sampling"))
-                sampling_ = Material::Create(s);
+                sampling_ = PPtr<Material>(Material::Create(s));
     }
 
     void UniversalRenderer::RenderFrame(ScriptableRenderContext& context, RenderGraph& graph, PostProcessPasses& post, ContextContainer& frame, CommandBuffer& cmd)
@@ -276,14 +276,14 @@ namespace helix::rendering::universal
             return graph.CreateTexture(desc);
         };
         auto copyDepth = [&]() {
-            if (!copyDepth_)
+            if (!copyDepth_.Get())
                 return;
             resources.cameraDepthTexture = depthTexture();
             BlitData* data = nullptr;
             PassBuilder<BlitData> b = graph.AddRasterRenderPass("CopyDepth", data);
             data->source = resources.cameraDepth;
             data->graph = &graph;
-            data->material = copyDepth_;
+            data->material = copyDepth_.Get();
             b.UseTexture(resources.cameraDepth);
             b.SetRenderAttachmentDepth(resources.cameraDepthTexture, AccessFlags::WriteAll);
             b.SetGlobalTextureAfterPass(resources.cameraDepthTexture, Shader::PropertyToID("_CameraDepthTexture"));
@@ -306,9 +306,9 @@ namespace helix::rendering::universal
             data->source = resources.cameraColor;
             data->graph = &graph;
             data->bilinear = down != Downsampling::None;
-            if (down == Downsampling::_4xBox && sampling_)
+            if (down == Downsampling::_4xBox && sampling_.Get())
             {
-                data->material = sampling_;
+                data->material = sampling_.Get();
                 sampling_->SetFloat("_SampleOffset", 2.0f);
             }
             b.UseTexture(resources.cameraColor);

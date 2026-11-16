@@ -30,8 +30,7 @@ namespace helix::rendering::universal
         static bool HdrGrading(const UniversalCameraData& cameraData, const UniversalPostProcessingData& postData);
 
     private:
-        engine::Material* ldr_ = nullptr;
-        engine::Material* hdr_ = nullptr;
+        engine::PPtr<engine::Material> ldr_, hdr_;
     };
 
     class PostProcessPass
@@ -48,7 +47,6 @@ namespace helix::rendering::universal
         TextureHandle RecordBloom(RenderGraph& graph, const UniversalCameraData& cameraData, const UniversalPostProcessingData& postData,
                                   const VolumeStack* stack, const PostProcessData& resources, TextureHandle source);
 
-        engine::Material* bloom_ = nullptr;
-        engine::Material* uber_ = nullptr;
+        engine::PPtr<engine::Material> bloom_, uber_;
     };
 }
