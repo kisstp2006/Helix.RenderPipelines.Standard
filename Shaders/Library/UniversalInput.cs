@@ -44,30 +44,6 @@ public struct AdditionalLightSpotDirections
     public LightVectorArray _AdditionalLightsSpotDir;
 }
 
-[System.Runtime.CompilerServices.InlineArray(5)]
-public struct CascadeMatrices
-{
-    private float4x4 element;
-}
-
-/// <summary>The main light's cascaded shadow: per cascade the world to shadow matrix (one more, zero, beyond the last),
-/// the culling spheres and their squared radii, the strength and fade, the map's size and the soft shadow offsets.</summary>
-public struct MainLightShadowConstants
-{
-    public CascadeMatrices _MainLightWorldToShadow;
-    public float4 _CascadeShadowSplitSpheres0;
-    public float4 _CascadeShadowSplitSpheres1;
-    public float4 _CascadeShadowSplitSpheres2;
-    public float4 _CascadeShadowSplitSpheres3;
-    public float4 _CascadeShadowSplitSphereRadii;
-    /// <summary>x: strength; y: the soft shadow quality (0 hard, 1 low, 2 medium, 3 high); z: the fade's scale; w: its bias.</summary>
-    public float4 _MainLightShadowParams;
-    /// <summary>xy: one texel of the atlas; zw: the atlas's size.</summary>
-    public float4 _MainLightShadowmapSize;
-    public float4 _MainLightShadowOffset0;
-    public float4 _MainLightShadowOffset1;
-}
-
 /// <summary>The ambient probe in the shaders' form (RenderSettings.ambientProbe).</summary>
 public struct AmbientProbeConstants
 {
@@ -75,8 +51,8 @@ public struct AmbientProbeConstants
 }
 
 /// <summary>
-/// The pipeline's globals as every Standard shader reads them: uniform slots 1 to 7 (slot 0 is the material's), texture
-/// slots 8 and 9 (0 to 7 are the material's).
+/// The pipeline's globals as every Standard shader reads them: uniform slots 1 to 7 (slot 0 is the material's; slot 6
+/// is the core's CascadedShadows), texture slots 8 and 9 (0 to 7 are the material's; 9 is the core's shadow atlas).
 /// </summary>
 public static class UniversalGlobals
 {
@@ -87,15 +63,11 @@ public static class UniversalGlobals
     [Uniform(3)] public static AdditionalLightColors lightColors;
     [Uniform(4)] public static AdditionalLightAttenuations lightAttenuations;
     [Uniform(5)] public static AdditionalLightSpotDirections lightSpotDirections;
-    [Uniform(6)] public static MainLightShadowConstants shadows;
     [Uniform(7)] public static AmbientProbeConstants ambient;
 
     /// <summary>The object's reflection probe cube (the scene's reflection without one).</summary>
     [Texture(8)] public static TextureCube<float4> unity_SpecCube0;
     [Sampler(8)] public static SamplerState samplerunity_SpecCube0;
-    /// <summary>The main light's shadow atlas, compared at the depth of a position.</summary>
-    [Texture(9)] public static Texture2D<float> _MainLightShadowmapTexture;
-    [Sampler(9)] public static SamplerComparisonState sampler_MainLightShadowmapTexture;
 }
 
 /// <summary>What a surface shader gives the lighting (the reference's SurfaceData).</summary>

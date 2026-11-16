@@ -4,26 +4,17 @@
 #include <Helix/Engine/Rendering/Pipeline/Shadows.h>
 #include <Helix/Engine/Rendering/Pipeline/CommandBuffer.h>
 #include <Helix/Math/Matrix4x4.h>
+#include <Helix/RenderPipelines/Core/Shadows/CascadedShadows.h>
 
 // The shadow math of the pipeline (the reference's ShadowUtils; its C# class mirrors these): a cascade's view,
-// projection and atlas tile, the tile's transform, the tile size of an atlas, a light's depth and normal bias.
+// projection and atlas tile, the tile's transform, the tile size of an atlas, a light's depth and normal bias. The
+// math is the core's CascadedShadows (the Physical pipeline's too); these take the pipeline's frame data.
 namespace helix::rendering::universal
 {
     class UniversalShadowData;
 
-    // A shadow map tile of a light or cascade.
-    struct ShadowSliceData
-    {
-        engine::ShadowSplitData splitData;
-        i32 offsetX = 0, offsetY = 0;
-        i32 resolution = 0;
-        Matrix4x4 viewMatrix = Matrix4x4::identity;
-        Matrix4x4 projectionMatrix = Matrix4x4::identity;
-        // World to the atlas's texels (xy 0 to 1) and depth (0 to 1).
-        Matrix4x4 shadowTransform = Matrix4x4::identity;
-
-        void Clear() { *this = ShadowSliceData(); }
-    };
+    // A shadow map tile of a light or cascade (the core's).
+    using ShadowSliceData = rendering::ShadowSliceData;
 
     struct ShadowUtils
     {

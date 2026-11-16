@@ -34,7 +34,7 @@ on one renderer.
 | `Source/Helix/RenderPipelines/Standard/Renderer/` | `ScriptableRenderer`, `UniversalRenderer` (the forward frame on the core's render graph), renderer data (`UniversalRendererData`), renderer features, `PostProcessData` |
 | `Source/Helix/RenderPipelines/Standard/Passes/` | `ScriptableRenderPass`, the post processing passes (the grading table, bloom, the uber pass) |
 | `Source/Helix/RenderPipelines/Standard/Frame/` | The frame data items (`UniversalCameraData`, `UniversalLightData`, `UniversalShadowData`, `UniversalResourceData`, ...) |
-| `Source/Helix/RenderPipelines/Standard/Shadows/` | `ShadowUtils` and `ShadowSliceData` |
+| `Source/Helix/RenderPipelines/Standard/Shadows/` | `ShadowUtils` (over the core's `CascadedShadows`, which records the cascades for this pipeline and the Physical one) |
 | `Source/Helix/RenderPipelines/Standard/Overrides/` | The volume components `Bloom`, `Tonemapping`, `ColorAdjustments` |
 | `Source/Helix/RenderPipelines/Standard/Components/` | `UniversalAdditionalCameraData`, `UniversalAdditionalLightData` |
 | `Source/Helix.RenderPipelines.Standard.Runtime/` | The C# side: the generated bindings and the C# API written over them (global settings, renderer data and renderers of C# classes, the C# helpers) |

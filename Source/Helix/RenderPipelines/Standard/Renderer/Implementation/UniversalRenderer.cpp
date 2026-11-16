@@ -33,20 +33,6 @@ namespace helix::rendering::universal
             RenderGraph* graph = nullptr;
         };
 
-        struct ShadowData
-        {
-            RendererListHandle lists[4];
-            RenderGraph* graph = nullptr;
-            Rect tiles[4];
-            Matrix4x4 views[4], projections[4];
-            // Per cascade the caster's depth and normal bias; the light they are for.
-            Vector4 biases[4];
-            VisibleLight light;
-            // The camera's matrices, set again after the cascades.
-            Matrix4x4 cameraView, cameraProjection;
-            i32 count = 0;
-        };
-
         struct BlitData
         {
             TextureHandle source;
@@ -413,106 +399,26 @@ namespace helix::rendering::universal
         UniversalLightData& lightData = *frame.Get<UniversalLightData>();
         UniversalShadowData& shadowData = *frame.Get<UniversalShadowData>();
         UniversalResourceData& resources = frame.GetOrCreate<UniversalResourceData>();
-        i32 count = Min(Max(shadowData.mainLightShadowCascadesCount, 1), 4);
-        i32 width = shadowData.mainLightShadowmapWidth, height = shadowData.mainLightShadowmapHeight;
-        // The tiles: one whole, two side by side, four in a square for 3 and 4.
-        i32 tile = ShadowUtils::GetMaxTileResolutionInAtlas(width, height, count);
         i32 lightIndex = lightData.mainLightIndex;
         const VisibleLight& main = lightData.visibleLights[u32(lightIndex)];
         Light* light = main.light();
-        ShadowData* data = nullptr;
-        PassBuilder<ShadowData> b = graph.AddRasterRenderPass("MainLightShadow", data);
-        data->count = count;
-        data->graph = &graph;
-        data->light = main;
-        data->cameraView = cameraData.GetViewMatrix();
-        data->cameraProjection = cameraData.GetProjectionMatrix();
-        ShadowSliceData slices[4];
-        ShadowSplitData splits[4];
-        Vector4 spheres[4];
-        Array<Matrix4x4> worldToShadow;
-        bool ok = tile > 0;
-        for (i32 i = 0; i < count && ok; i++)
-        {
-            ok = ShadowUtils::ExtractDirectionalLightMatrix(renderingData.cullResults, shadowData, lightIndex, i, width, height, tile,
-                                                            light ? light->shadowNearPlane() : 0.2f, spheres[i], slices[i]);
-            splits[i] = slices[i].splitData;
-            data->views[i] = slices[i].viewMatrix;
-            data->projections[i] = slices[i].projectionMatrix;
-            data->tiles[i] = Rect(f32(slices[i].offsetX), f32(slices[i].offsetY), f32(tile), f32(tile));
-            // Each cascade's bias by the size of its texels.
-            data->biases[i] = ShadowUtils::GetShadowBias(main, lightIndex, shadowData, slices[i].projectionMatrix, f32(tile));
-            worldToShadow.Push(slices[i].shadowTransform);
-        }
-        if (ok)
-        {
-            Array<LightShadowCasterCullingInfo> infos;
-            infos.Resize(lightData.visibleLights.Size());
-            infos[u32(lightIndex)].splitStart = 0;
-            infos[u32(lightIndex)].splitLength = count;
-            infos[u32(lightIndex)].projectionType = BatchCullingProjectionType::Orthographic;
-            context.CullShadowCasters(renderingData.cullResults,
-                                      ShadowCastersCullingInfos{Span<const LightShadowCasterCullingInfo>(infos.Data(), infos.Size()),
-                                                                Span<const ShadowSplitData>(splits, usize(count))});
-            TextureDesc atlasDesc(width, height);
-            atlasDesc.colorFormat = GraphicsFormat::None;
-            atlasDesc.depthBufferBits = DepthBits(shadowData.shadowmapDepthBufferBits);
-            atlasDesc.isShadowMap = true;
-            atlasDesc.filterMode = FilterMode::Bilinear;
-            atlasDesc.wrapMode = TextureWrapMode::Clamp;
-            atlasDesc.clearBuffer = true;
-            atlasDesc.name = String("_MainLightShadowmapTexture");
-            resources.mainShadowsTexture = graph.CreateTexture(atlasDesc);
-            for (i32 i = 0; i < count; i++)
-            {
-                ShadowDrawingSettings shadow(renderingData.cullResults, lightIndex, BatchCullingProjectionType::Orthographic);
-                shadow.splitIndex = i;
-                data->lists[i] = graph.CreateShadowRendererList(shadow);
-                b.UseRendererList(data->lists[i]);
-            }
-            b.SetRenderAttachmentDepth(resources.mainShadowsTexture);
-            b.AllowGlobalStateModification(true);
-            b.SetGlobalTextureAfterPass(resources.mainShadowsTexture, Shader::PropertyToID("_MainLightShadowmapTexture"));
-            b.SetRenderFunc([](ShadowData& d, RasterGraphContext& ctx) {
-                ctx.cmd->SetGlobalDepthBias(1.0f, 2.5f);
-                for (i32 i = 0; i < d.count; i++)
-                {
-                    ShadowUtils::SetupShadowCasterConstantBuffer(*ctx.cmd, d.light, d.biases[i]);
-                    ctx.cmd->SetViewport(d.tiles[i]);
-                    ctx.cmd->SetViewProjectionMatrices(d.views[i], d.projections[i]);
-                    ctx.cmd->DrawRendererList(d.graph->ResolveList(d.lists[i]));
-                }
-                ctx.cmd->SetGlobalDepthBias(0.0f, 0.0f);
-                ctx.cmd->SetViewProjectionMatrices(d.cameraView, d.cameraProjection);
-            });
-            // What the shaders read: per cascade the world to shadow matrix (one more for beyond the last), the
-            // spheres and their squared radii, the strength, soft shadow quality and fade, the map's size and the
-            // offsets of the four taps of the low tier (half a texel each way, two taps in each vector).
-            // Always the reference's five (a global array keeps the size it was first set with).
-            while (worldToShadow.Size() < 5)
-                worldToShadow.Push(Matrix4x4::zero);
-            cmd.SetGlobalMatrixArray(Shader::PropertyToID("_MainLightWorldToShadow"), Span<const Matrix4x4>(worldToShadow.Data(), worldToShadow.Size()));
-            Vector4 radii;
-            for (i32 i = 0; i < 4; i++)
-            {
-                Vector4 sphere = i < count ? spheres[i] : Vector4();
-                cmd.SetGlobalVector(Shader::PropertyToID(Format("_CascadeShadowSplitSpheres{}", i)), sphere);
-                (&radii.x)[i] = sphere.w * sphere.w;
-            }
-            cmd.SetGlobalVector(Shader::PropertyToID("_CascadeShadowSplitSphereRadii"), radii);
-            bool soft = shadowData.supportsSoftShadows && light && light->shadows() == LightShadows::Soft;
-            f32 fadeScale = 0, fadeBias = 0;
-            ShadowUtils::GetScaleAndBiasForLinearDistanceFade(cameraData.maxShadowDistance * cameraData.maxShadowDistance, shadowData.mainLightShadowCascadeBorder,
-                                                              fadeScale, fadeBias);
-            cmd.SetGlobalVector(Shader::PropertyToID("_MainLightShadowParams"),
-                                Vector4(light ? light->shadowStrength() : 1.0f, ShadowUtils::SoftShadowQualityToShaderProperty(light, soft), fadeScale, fadeBias));
-            f32 halfX = 0.5f / f32(width), halfY = 0.5f / f32(height);
-            cmd.SetGlobalVector(Shader::PropertyToID("_MainLightShadowOffset0"), Vector4(-halfX, -halfY, halfX, -halfY));
-            cmd.SetGlobalVector(Shader::PropertyToID("_MainLightShadowOffset1"), Vector4(-halfX, halfY, halfX, halfY));
-            cmd.SetGlobalVector(Shader::PropertyToID("_MainLightShadowmapSize"), Vector4(1.0f / f32(width), 1.0f / f32(height), f32(width), f32(height)));
-        }
-        b.Dispose();
-        if (!ok)
-            resources.mainShadowsTexture = TextureHandle();
+        // The core's cascades with the pipeline's settings (the asset's or the light's bias, soft shadow tiers).
+        CascadedShadowSettings s;
+        s.lightIndex = lightIndex;
+        s.cascadeCount = shadowData.mainLightShadowCascadesCount;
+        s.splits = shadowData.mainLightShadowCascadesSplit;
+        s.atlasWidth = shadowData.mainLightShadowmapWidth;
+        s.atlasHeight = shadowData.mainLightShadowmapHeight;
+        s.depthBits = shadowData.shadowmapDepthBufferBits;
+        Vector4 bias = u32(lightIndex) < shadowData.bias.Size() ? shadowData.bias[u32(lightIndex)] : Vector4(1, 1, 0, 0);
+        s.bias = Vector2(bias.x, bias.y);
+        s.soft = shadowData.supportsSoftShadows && light && light->shadows() == LightShadows::Soft;
+        s.softQuality = ShadowUtils::SoftShadowQualityToShaderProperty(light, s.soft);
+        s.strength = light ? light->shadowStrength() : 1.0f;
+        s.shadowDistance = cameraData.maxShadowDistance;
+        s.cascadeBorder = shadowData.mainLightShadowCascadeBorder;
+        s.nearPlane = light ? light->shadowNearPlane() : 0.2f;
+        resources.mainShadowsTexture = CascadedShadows::Record(graph, context, renderingData.cullResults, s, cameraData.GetViewMatrix(),
+                                                                cameraData.GetProjectionMatrix(), cmd);
     }
 }
