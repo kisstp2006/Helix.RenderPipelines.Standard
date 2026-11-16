@@ -39,7 +39,7 @@ on one renderer.
 | `Source/Helix/RenderPipelines/Standard/Components/` | `UniversalAdditionalCameraData`, `UniversalAdditionalLightData` |
 | `Source/Helix.RenderPipelines.Standard.Runtime/` | The C# side: the generated bindings and the C# API written over them (global settings, renderer data and renderers of C# classes, the C# helpers) |
 | `Shaders/` | The pipeline's C# shaders and their library (`Shaders/Library/`): Lit, Simple Lit, Unlit, Particles/Unlit, the copy shaders, Bloom, the look up table builders, UberPost, FallbackError |
-| `Tests/` | Tests in both languages run in the engine by a C++ test program on every device the pipeline supports (each D3D11 adapter, the newest OpenGL, an OpenGL 3.3 context, OpenGL ES; WebGL 2 on the Web), with golden images in `Tests/Golden/`; `Tests/Api/Helix.RenderPipelines.Standard.csv` is the inventory of the public C# surface |
+| `Tests/` | Tests in both languages run in the engine by a C++ test program on every device the pipeline supports (each D3D11 adapter, the newest OpenGL, an OpenGL 3.3 context, OpenGL ES; WebGL 2 on the Web), with golden images in `Tests/Golden/` and the GPU time of the final scene's 1920 x 1080 frame and its passes (held to 16.6 ms with `HELIX_GPU_BUDGET=1`); `Tests/Api/Helix.RenderPipelines.Standard.csv` is the inventory of the public C# surface |
 
 ## Use
 

@@ -1,3 +1,4 @@
+#include <Support/GpuFrame.h>
 #include <Support/TestScene.h>
 
 #include <Cpp/CppFeatures.h>
@@ -266,4 +267,38 @@ HX_TEST(Standard, TheFinalSceneInBothLanguagesOnEveryDevice)
         DestroyAll(keep);
     });
     std::printf("    %u devices\n", devices);
+}
+
+HX_TEST(Standard, GpuBudgetAt1080p)
+{
+    // The final scene at 1920 x 1080 (soft shadows, the lights, the skybox, bloom and ACES): the GPU time of its frames
+    // and their passes on every device; with HELIX_GPU_BUDGET=1 (the hardware run of the exit check) a frame takes at
+    // most 16.6 ms (60 fps).
+    HX_REQUIRE(StartScripts());
+    bool checked = engine::testing::GpuBudgetChecked();
+    u32 ran = 0;
+    ForEachDevice([&](rhi::Device& device, StringView label) {
+        if (!device.Caps().gpuTimers)
+            return;
+        ran++;
+        ShaderFolder shaders;
+        TestTarget target(device, 1920, 1080);
+        Array<Object*> keep;
+        GraphicsSettings::SetDefaultRenderPipeline(FinalAsset(keep));
+        {
+            FinalScene scene;
+            auto draw = [] {
+                UpdateWorldMatrices();
+                Graphics::RenderFrame();
+            };
+            // The first frames make the shaders' variants and the pools.
+            engine::testing::TimeGpuFrames(device, 4, draw);
+            engine::testing::GpuFrameTimes times = engine::testing::TimeGpuFrames(device, 16, draw);
+            HX_REQUIRE(!times.frames.Empty());
+            engine::testing::PrintGpuFrames(label, times);
+            HX_CHECK(!checked || times.Median() <= 16.6);
+        }
+        DestroyAll(keep);
+    });
+    std::printf("    %u devices with GPU timers%s\n", ran, checked ? ", budget checked" : "");
 }
