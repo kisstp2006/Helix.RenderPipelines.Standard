@@ -196,7 +196,21 @@ namespace helix::rendering::universal
         return defaultParticleMaterial_.Get();
     }
 
-    engine::RenderPipeline* UniversalRenderPipelineAsset::CreatePipeline() { return new UniversalRenderPipeline(this); }
+    engine::RenderPipeline* UniversalRenderPipelineAsset::CreatePipeline()
+    {
+        // An asset without renderers (one made by its class's name, as an editor makes the pipeline it is asked for)
+        // takes the default renderer, as the reference's editor gives a new asset one.
+        if (rendererData_.Empty())
+        {
+            auto* data = static_cast<UniversalRendererData*>(engine::ScriptableObject::CreateInstance(scripting::TypeOf<UniversalRendererData>()));
+            if (data)
+            {
+                ScriptableRendererData* list[] = {data};
+                SetRendererDataList(Span<ScriptableRendererData* const>(list, 1));
+            }
+        }
+        return new UniversalRenderPipeline(this);
+    }
 
     // ---------------------------------------------------------------------------------------------- the pipeline
 

@@ -30,7 +30,7 @@ on one renderer.
 | Path | Content |
 |---|---|
 | `Source/Helix/RenderPipelines/Standard/Settings/` | The pipeline's enums: shadow and MSAA settings, rendering modes, render pass events and inputs |
-| `Source/Helix/RenderPipelines/Standard/Pipeline/` | `UniversalRenderPipelineAsset` (the asset's settings, renderers, default materials, version upgrades) and `UniversalRenderPipeline` (the frame data of each camera, the renderers' frames) |
+| `Source/Helix/RenderPipelines/Standard/Pipeline/` | `UniversalRenderPipelineAsset` (the asset's settings, renderers (an asset made by its class with none gets the default renderer), default materials, version upgrades) and `UniversalRenderPipeline` (the frame data of each camera, the renderers' frames) |
 | `Source/Helix/RenderPipelines/Standard/Renderer/` | `ScriptableRenderer`, `UniversalRenderer` (the forward frame on the core's render graph), renderer data (`UniversalRendererData`), renderer features, `PostProcessData` |
 | `Source/Helix/RenderPipelines/Standard/Passes/` | `ScriptableRenderPass`, the post processing passes (the grading table, bloom, the uber pass) |
 | `Source/Helix/RenderPipelines/Standard/Frame/` | The frame data items (`UniversalCameraData`, `UniversalLightData`, `UniversalShadowData`, `UniversalResourceData`, ...) |
